@@ -17,7 +17,7 @@ body {
     position: relative;
 }
 
-/* 우주 은하/성운 분위기 애니메이션 효과 */
+/* 몽환적인 성운 배경 효과 */
 .nebula-1 {
     position: fixed;
     top: -10%;
@@ -47,7 +47,7 @@ body {
     100% { transform: translate(50px, 40px) scale(1.15); }
 }
 
-/* 메인 컨테이너 (글래스모피즘 스타일) */
+/* 메인 컨테이너 (글래스모피즘) */
 .container {
     width: 100%;
     max-width: 750px;
@@ -62,7 +62,7 @@ body {
                 0 0 40px rgba(106, 17, 203, 0.15);
 }
 
-/* 음악 플레이어 스타일 */
+/* 음악 플레이어 */
 .music-player {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -120,15 +120,10 @@ body {
     text-align: right;
 }
 
-/* 헤더 스타일 */
+/* 프로필 헤더 */
 .profile-header {
     text-align: center;
     margin-bottom: 35px;
-}
-
-.avatar-area {
-    margin-bottom: 15px;
-    display: inline-block;
 }
 
 .avatar-placeholder {
@@ -137,24 +132,20 @@ body {
     background: linear-gradient(135deg, #1e1b4b 0%, #311068 100%);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     font-size: 2.5rem;
     box-shadow: 0 0 25px rgba(106, 17, 203, 0.4);
+    margin-bottom: 15px;
 }
 
 .profile-name {
     font-family: 'Orbit', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
-    letter-spacing: 1px;
     margin-bottom: 5px;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.oshimark {
-    font-size: 1.4rem;
 }
 
 .profile-sub {
@@ -162,7 +153,7 @@ body {
     color: #94a3b8;
 }
 
-/* 상세 정보리스트 */
+/* 프로필 상세 정보 */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -221,7 +212,7 @@ body {
     border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
-/* 코멘트 한마디 영역 */
+/* 한마디 코멘트 */
 .comments-section {
     display: flex;
     flex-direction: column;
@@ -249,7 +240,88 @@ body {
     color: #e2e8f0;
 }
 
-/* 링크 섹션 */
+/* 신규 추가: 사이트 소개 카드 스타일 */
+.project-section {
+    margin-bottom: 35px;
+}
+
+.project-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(106, 17, 203, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.project-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(37, 117, 252, 0.3);
+}
+
+/* 아이콘 이미지를 넣으실 경우를 대비한 스타일 */
+.project-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.project-details h3 {
+    font-family: 'Orbit', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #818cf8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.project-link:hover {
+    color: #a5b4fc;
+}
+
+@media (max-width: 600px) {
+    .project-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+/* 링크 소셜 섹션 */
 .section-title {
     font-family: 'Orbit', sans-serif;
     font-size: 1.1rem;
@@ -283,10 +355,6 @@ body {
     transition: all 0.3s ease;
 }
 
-.link-card i {
-    font-size: 1.2rem;
-}
-
 .link-card:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-3px);
@@ -298,97 +366,7 @@ body {
 .link-card.instagram:hover { border-color: #e1306c; color: #e1306c; }
 .link-card.email:hover { border-color: #10b981; color: #10b981; }
 
-/* 디스코드 홍보 영역 */
-.discord-promo {
-    background: linear-gradient(135deg, rgba(88, 101, 242, 0.15) 0%, rgba(106, 17, 203, 0.15) 100%);
-    border: 1px solid rgba(88, 101, 242, 0.3);
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 35px;
-}
-
-.promo-header {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.promo-header h2 {
-    font-family: 'Orbit', sans-serif;
-    font-size: 1.2rem;
-    color: #a5b4fc;
-}
-
-.promo-header h3 {
-    font-size: 1.05rem;
-    color: #fff;
-    margin-top: 4px;
-}
-
-.promo-intro {
-    text-align: center;
-    font-size: 0.85rem;
-    color: #94a3b8;
-    margin-bottom: 15px;
-}
-
-.promo-body {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #cbd5e1;
-}
-
-.promo-badges {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    list-style: none;
-    margin: 15px 0;
-}
-
-.promo-badges li {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 4px 12px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.promo-badges li i {
-    margin-right: 4px;
-    color: #818cf8;
-}
-
-.promo-footer {
-    font-size: 0.85rem;
-    text-align: center;
-    color: #94a3b8;
-    margin-top: 10px;
-}
-
-.join-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    background: #5865F2;
-    color: white;
-    text-decoration: none;
-    padding: 14px;
-    border-radius: 12px;
-    margin-top: 20px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: background 0.2s, transform 0.2s;
-    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-}
-
-.join-btn:hover {
-    background: #4752c4;
-    transform: translateY(-2px);
-}
-
-/* 푸터 스타일 */
+/* 푸터 */
 .profile-footer {
     text-align: center;
     font-size: 0.85rem;
@@ -397,7 +375,12 @@ body {
     padding-top: 20px;
 }
 
+.custom-greeting {
+    margin-bottom: 10px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
 .copyright {
-    margin-top: 8px;
     font-size: 0.75rem;
 }
