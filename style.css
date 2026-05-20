@@ -1,14 +1,25 @@
-/* 기본 초기화 및 우주 배경 배치 */
+/* ==========================================================================
+   기본 초기화 및 글자 크기 고정 (Font Size Lock)
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-/* ✨ 드래그 및 텍스트 선택 방지 강제 적용 */
-    -webkit-user-select: none; /* 사파리 */
-    -moz-user-select: none;    /* 파이어폭스 */
-    -ms-user-select: none;     /* 익스플로러 */
-    user-select: none;         /* 표준 브라우저 */
-    -webkit-user-drag: none;   /* 이미지/요소 드래그 방지 */
+
+    /* 드래그 및 텍스트 선택 방지 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+html, body {
+    /* ✨ 모바일 브라우저가 글자 크기를 마음대로 키우는 현상(Font Boosting) 원천 차단 */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -24,7 +35,65 @@ body {
     padding: 40px 0;
 }
 
-/* 몽환적인 성운 안개 효과 */
+/* ==========================================================================
+   로딩 화면 (글자 크기 고정 버전)
+   ========================================================================== */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #04040c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-galaxy {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: spinGalaxy 3s infinite linear;
+    filter: drop-shadow(0 0 15px rgba(106, 17, 203, 0.6));
+}
+
+.loading-text {
+    font-family: 'Orbit', sans-serif;
+    font-size: 1rem;
+    color: #a5b4fc;
+    letter-spacing: 2px;
+    animation: pulseText 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes spinGalaxy {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulseText {
+    0% { opacity: 0.4; text-shadow: 0 0 5px rgba(165, 180, 252, 0.2); }
+    100% { opacity: 1; text-shadow: 0 0 15px rgba(165, 180, 252, 0.8); }
+}
+
+/* ==========================================================================
+   몽환적인 우주 배경 효과
+   ========================================================================== */
 .nebula-1 {
     position: fixed;
     top: -15%;
@@ -54,7 +123,9 @@ body {
     100% { transform: translate(40px, 30px) scale(1.12); }
 }
 
-/* 메인 컴팩트 판넬 (글래스모피즘) */
+/* ==========================================================================
+   메인 컨테이너 레이아웃
+   ========================================================================== */
 .container {
     width: 100%;
     max-width: 650px;
@@ -70,7 +141,7 @@ body {
 }
 
 /* ==========================================================================
-   음악 플레이어 스타일 (정렬 오류 완벽 수정 버전)
+   오디오 플레이어 영역
    ========================================================================== */
 .music-player {
     background: rgba(255, 255, 255, 0.03);
@@ -80,16 +151,16 @@ body {
     margin-bottom: 35px;
     display: flex;
     flex-direction: column;
-    gap: 14px; /* 상하 줄 간격 균형 조정 */
+    gap: 14px;
 }
 
 .player-title {
     font-size: 0.85rem;
     color: #94a3b8;
     display: flex;
-    align-items: center; /* 아이콘과 텍스트 세로 중앙 정렬 */
+    align-items: center;
     gap: 8px;
-    line-height: 1; /* 행간 불일치로 인한 어긋남 방지 */
+    line-height: 1;
 }
 
 .player-title i {
@@ -100,7 +171,7 @@ body {
 
 .player-controls {
     display: flex;
-    align-items: center; /* 버튼, 재생 바, 텍스트를 칼같이 한 줄로 정렬 */
+    align-items: center;
     gap: 15px;
     width: 100%;
 }
@@ -132,13 +203,12 @@ body {
     justify-content: center;
 }
 
-/* 브라우저 기본 마진을 지워 정렬을 똑바로 맞춤 */
 #progress-bar {
     flex-grow: 1;
     accent-color: #3b82f6;
     height: 4px;
     cursor: pointer;
-    margin: 0; /* ✨ 중요: 브라우저 기본 틀어짐 방지 */
+    margin: 0;
     padding: 0;
     vertical-align: middle;
 }
@@ -148,12 +218,14 @@ body {
     color: #64748b;
     display: inline-flex;
     align-items: center;
-    line-height: 1; /* ✨ 중요: 글자 높낮이 기준선 통일 */
+    line-height: 1;
     flex-shrink: 0;
-    font-variant-numeric: tabular-nums; /* 숫자 변할 때 들썩임 방지 */
+    font-variant-numeric: tabular-nums;
 }
 
-/* 프로필 헤더 및 이미지 서클 */
+/* ==========================================================================
+   프로필 헤더 영역
+   ========================================================================== */
 .profile-header {
     text-align: center;
     margin-bottom: 35px;
@@ -209,7 +281,9 @@ body {
     color: #64748b;
 }
 
-/* 웅크려 들지 않고 완벽한 수평 균형을 갖춘 인포 그리드 */
+/* ==========================================================================
+   상세 정보 그리드 판넬 (중앙 대칭 보정)
+   ========================================================================== */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.02);
@@ -233,7 +307,7 @@ body {
 .info-item {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* 정보 라벨과 텍스트 균형 분배 */
+    justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     padding-bottom: 8px;
     font-size: 0.9rem;
@@ -265,11 +339,10 @@ body {
     box-shadow: 0 0 8px #3b82f6;
 }
 
-/* 하단 태그 센터 정렬화 */
 .tags {
     margin-top: 20px;
     display: flex;
-    justify-content: center; /* 태그들을 정중앙으로 모아 균형 조율 */
+    justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -283,7 +356,9 @@ body {
     border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
-/* 신규 코멘트 박스 스타일 레이아웃 */
+/* ==========================================================================
+   코멘트 & 프로젝트 블록 영역
+   ========================================================================== */
 .comment-section {
     margin-bottom: 35px;
     text-align: center;
@@ -307,7 +382,6 @@ body {
     line-height: 1.5;
 }
 
-/* 우리의 기록장 소개 블록 */
 .project-section {
     margin-bottom: 35px;
 }
@@ -360,7 +434,7 @@ body {
 }
 
 .project-details h3 {
-    size: 1.1rem;
+    font-size: 1.1rem;
     color: #ffffff;
     margin-bottom: 4px;
 }
@@ -390,7 +464,9 @@ body {
     .project-details { text-align: center; }
 }
 
-/* 하단 섹션 타이틀 공통 */
+/* ==========================================================================
+   소셜 및 링크 섹션
+   ========================================================================== */
 .section-title {
     font-family: 'Orbit', sans-serif;
     font-size: 0.95rem;
@@ -400,7 +476,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* 링크 격자망 배치 */
 .links-section {
     max-width: 550px;
     margin: 0 auto 35px auto;
@@ -440,7 +515,9 @@ body {
 .link-card.instagram:hover { border-color: #e1306c; color: #e1306c; }
 .link-card.email:hover { border-color: #10b981; color: #10b981; }
 
-/* 하단 푸터 */
+/* ==========================================================================
+   하단 푸터
+   ========================================================================== */
 .profile-footer {
     text-align: center;
     font-size: 0.8rem;
@@ -456,62 +533,4 @@ body {
 
 .copyright {
     font-size: 0.75rem;
-}
-/* ==========================================================================
-   몽환적인 은하수 로딩 화면 스타일
-   ========================================================================== */
-#loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #04040c; /* 깊은 우주 색상 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* 다른 어떤 요소보다 위에 표시 */
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 로딩 완료 후 사라질 때 적용되는 클래스 */
-#loading-screen.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loading-content {
-    text-align: center;
-}
-
-/* 은하 이모지가 몽환적으로 회전하는 애니메이션 */
-.loading-galaxy {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    display: inline-block;
-    animation: spinGalaxy 3s infinite linear;
-    filter: drop-shadow(0 0 15px rgba(106, 17, 203, 0.6));
-}
-
-/* 텍스트가 은은하게 반짝이는 애니메이션 */
-.loading-text {
-    font-family: 'Orbit', sans-serif;
-    font-size: 1rem;
-    color: #a5b4fc;
-    letter-spacing: 2px;
-    animation: pulseText 1.5s infinite alternate ease-in-out;
-}
-
-@keyframes spinGalaxy {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes pulseText {
-    0% { opacity: 0.4; text-shadow: 0 0 5px rgba(165, 180, 252, 0.2); }
-    100% { opacity: 1; text-shadow: 0 0 15px rgba(165, 180, 252, 0.8); }
 }
