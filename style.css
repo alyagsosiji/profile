@@ -1,4 +1,4 @@
-/* 기본 리셋 및 은하 밤하늘 배경 배치 */
+/* 기본 초기화 및 우주 배경 배치 */
 * {
     margin: 0;
     padding: 0;
@@ -18,14 +18,14 @@ body {
     padding: 40px 0;
 }
 
-/* 몽환적인 우주 안개 공간 연출 효과 */
+/* 몽환적인 성운 안개 효과 */
 .nebula-1 {
     position: fixed;
     top: -15%;
     left: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(106, 17, 203, 0.2) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(106, 17, 203, 0.18) 0%, rgba(0,0,0,0) 70%);
     filter: blur(80px);
     z-index: -1;
     animation: floatNebula 22s infinite alternate ease-in-out;
@@ -37,7 +37,7 @@ body {
     right: -10%;
     width: 650px;
     height: 650px;
-    background: radial-gradient(circle, rgba(37, 117, 252, 0.15) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(37, 117, 252, 0.13) 0%, rgba(0,0,0,0) 70%);
     filter: blur(90px);
     z-index: -1;
     animation: floatNebula 28s infinite alternate-reverse ease-in-out;
@@ -48,25 +48,25 @@ body {
     100% { transform: translate(40px, 30px) scale(1.12); }
 }
 
-/* 글래스모피즘 메인 프로필 판넬 */
+/* 메인 컴팩트 판넬 (글래스모피즘) */
 .container {
     width: 100%;
-    max-width: 660px;
+    max-width: 650px;
     margin: 0 20px;
     padding: 40px;
-    background: rgba(12, 12, 26, 0.68);
+    background: rgba(11, 11, 24, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 24px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55), 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
                 0 0 40px rgba(99, 102, 241, 0.08);
 }
 
-/* 탑 컴팩트 뮤직 플레이어 */
+/* 상단 오디오 플레이어 */
 .music-player {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 16px;
     padding: 16px 20px;
     margin-bottom: 35px;
@@ -120,15 +120,15 @@ body {
     color: #64748b;
 }
 
-/* 프로필 원형 이미지 배치 교정 */
+/* 프로필 헤더 및 이미지 서클 */
 .profile-header {
     text-align: center;
     margin-bottom: 35px;
 }
 
 .avatar-area {
-    width: 105px;
-    height: 105px;
+    width: 110px;
+    height: 110px;
     margin: 0 auto 18px auto;
     border-radius: 50%;
     padding: 3px;
@@ -160,7 +160,7 @@ body {
 
 .profile-name {
     font-family: 'Orbit', sans-serif;
-    font-size: 1.75rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 6px;
@@ -176,19 +176,21 @@ body {
     color: #64748b;
 }
 
-/* 가독성 붕괴 방지용 격자 정보 레이아웃 교정 */
+/* 웅크려 들지 않고 완벽한 수평 균형을 갖춘 인포 그리드 */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.02);
-    padding: 24px;
+    padding: 26px;
     border-radius: 18px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px 24px;
+    gap: 16px 28px;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 @media (max-width: 560px) {
@@ -198,21 +200,22 @@ body {
 .info-item {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* 정보 라벨과 텍스트 균형 분배 */
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    padding-bottom: 6px;
+    padding-bottom: 8px;
     font-size: 0.9rem;
 }
 
-/* 라벨 좌측 배치폭을 고정 제어하여 텍스트 분산 찢어짐 최소화 */
 .info-item strong {
-    width: 130px;
     color: #818cf8;
     font-weight: 500;
     flex-shrink: 0;
+    padding-right: 10px;
 }
 
 .info-item span {
     color: #e2e8f0;
+    text-align: right;
 }
 
 .color-tag {
@@ -222,58 +225,56 @@ body {
 }
 
 .color-tag .dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     background-color: #f1f1f1;
     border-radius: 50%;
     box-shadow: 0 0 8px #3b82f6;
 }
 
+/* 하단 태그 센터 정렬화 */
 .tags {
-    margin-top: 18px;
+    margin-top: 20px;
     display: flex;
+    justify-content: center; /* 태그들을 정중앙으로 모아 균형 조율 */
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
 }
 
 .tag {
     font-size: 0.8rem;
     background: rgba(99, 102, 241, 0.12);
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 30px;
     color: #93c5fd;
     border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
-/* 다국어 메시지 박스 */
-.comments-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* 신규 코멘트 박스 스타일 레이아웃 */
+.comment-section {
     margin-bottom: 35px;
+    text-align: center;
 }
 
-.comment-box {
-    background: rgba(255, 255, 255, 0.01);
-    border-left: 3px solid #4f46e5;
-    padding: 12px 18px;
-    border-radius: 0 12px 12px 0;
+.comment-max-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 18px 20px;
+    border-radius: 16px;
+    max-width: 550px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.lang-tag {
-    font-size: 0.7rem;
-    color: #818cf8;
-    font-weight: 700;
-    margin-bottom: 4px;
+.main-comment-text {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #e2e8f0;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
 }
 
-.comment-text {
-    font-size: 0.9rem;
-    font-style: italic;
-    color: #cbd5e1;
-}
-
-/* 우리의 기록장 연동 블록 디자인 균형 교정 */
+/* 우리의 기록장 소개 블록 */
 .project-section {
     margin-bottom: 35px;
 }
@@ -286,6 +287,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 20px;
+    max-width: 550px;
+    margin: 0 auto;
     transition: transform 0.3s, border-color 0.3s;
 }
 
@@ -319,8 +322,12 @@ body {
     font-size: 1.3rem;
 }
 
+.project-details {
+    text-align: left;
+}
+
 .project-details h3 {
-    font-size: 1.1rem;
+    size: 1.1rem;
     color: #ffffff;
     margin-bottom: 4px;
 }
@@ -347,9 +354,10 @@ body {
 
 @media (max-width: 500px) {
     .project-card { flex-direction: column; text-align: center; }
+    .project-details { text-align: center; }
 }
 
-/* 하단 링크 버튼 모듈화 정렬 */
+/* 하단 섹션 타이틀 공통 */
 .section-title {
     font-family: 'Orbit', sans-serif;
     font-size: 0.95rem;
@@ -359,11 +367,16 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* 링크 격자망 배치 */
+.links-section {
+    max-width: 550px;
+    margin: 0 auto 35px auto;
+}
+
 .links-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    margin-bottom: 35px;
 }
 
 @media (max-width: 500px) {
@@ -394,7 +407,7 @@ body {
 .link-card.instagram:hover { border-color: #e1306c; color: #e1306c; }
 .link-card.email:hover { border-color: #10b981; color: #10b981; }
 
-/* 하단 푸터 영역 */
+/* 하단 푸터 */
 .profile-footer {
     text-align: center;
     font-size: 0.8rem;
