@@ -457,3 +457,61 @@ body {
 .copyright {
     font-size: 0.75rem;
 }
+/* ==========================================================================
+   몽환적인 은하수 로딩 화면 스타일
+   ========================================================================== */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #04040c; /* 깊은 우주 색상 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 다른 어떤 요소보다 위에 표시 */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 로딩 완료 후 사라질 때 적용되는 클래스 */
+#loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+/* 은하 이모지가 몽환적으로 회전하는 애니메이션 */
+.loading-galaxy {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: spinGalaxy 3s infinite linear;
+    filter: drop-shadow(0 0 15px rgba(106, 17, 203, 0.6));
+}
+
+/* 텍스트가 은은하게 반짝이는 애니메이션 */
+.loading-text {
+    font-family: 'Orbit', sans-serif;
+    font-size: 1rem;
+    color: #a5b4fc;
+    letter-spacing: 2px;
+    animation: pulseText 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes spinGalaxy {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulseText {
+    0% { opacity: 0.4; text-shadow: 0 0 5px rgba(165, 180, 252, 0.2); }
+    100% { opacity: 1; text-shadow: 0 0 15px rgba(165, 180, 252, 0.8); }
+}
