@@ -3,6 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+/* ✨ 드래그 및 텍스트 선택 방지 강제 적용 */
+    -webkit-user-select: none; /* 사파리 */
+    -moz-user-select: none;    /* 파이어폭스 */
+    -ms-user-select: none;     /* 익스플로러 */
+    user-select: none;         /* 표준 브라우저 */
+    -webkit-user-drag: none;   /* 이미지/요소 드래그 방지 */
 }
 
 body {
