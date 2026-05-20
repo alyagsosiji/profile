@@ -1,4 +1,4 @@
-/* 기본 초기화 및 폰트 설정 */
+/* 기본 리셋 및 은하 밤하늘 배경 배치 */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
 }
 
 body {
-    background: radial-gradient(circle at center, #0f0c1b 0%, #05020a 100%);
+    background: radial-gradient(circle at center, #070714 0%, #020205 100%);
     color: #f1f1f1;
     font-family: 'Noto Sans KR', sans-serif;
     min-height: 100vh;
@@ -15,68 +15,69 @@ body {
     align-items: center;
     overflow-x: hidden;
     position: relative;
+    padding: 40px 0;
 }
 
-/* 몽환적인 성운 배경 효과 */
+/* 몽환적인 우주 안개 공간 연출 효과 */
 .nebula-1 {
     position: fixed;
-    top: -10%;
+    top: -15%;
     left: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(106, 17, 203, 0.25) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(106, 17, 203, 0.2) 0%, rgba(0,0,0,0) 70%);
     filter: blur(80px);
     z-index: -1;
-    animation: floatNebula 20s infinite alternate ease-in-out;
+    animation: floatNebula 22s infinite alternate ease-in-out;
 }
 
 .nebula-2 {
     position: fixed;
-    bottom: -10%;
+    bottom: -15%;
     right: -10%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(37, 117, 252, 0.2) 0%, rgba(0,0,0,0) 70%);
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(37, 117, 252, 0.15) 0%, rgba(0,0,0,0) 70%);
     filter: blur(90px);
     z-index: -1;
-    animation: floatNebula 25s infinite alternate-reverse ease-in-out;
+    animation: floatNebula 28s infinite alternate-reverse ease-in-out;
 }
 
 @keyframes floatNebula {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(50px, 40px) scale(1.15); }
+    100% { transform: translate(40px, 30px) scale(1.12); }
 }
 
-/* 메인 컨테이너 (글래스모피즘) */
+/* 글래스모피즘 메인 프로필 판넬 */
 .container {
     width: 100%;
-    max-width: 750px;
-    margin: 40px 20px;
+    max-width: 660px;
+    margin: 0 20px;
     padding: 40px;
-    background: rgba(15, 12, 30, 0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(12, 12, 26, 0.68);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
-                0 0 40px rgba(106, 17, 203, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55), 
+                0 0 40px rgba(99, 102, 241, 0.08);
 }
 
-/* 음악 플레이어 */
+/* 탑 컴팩트 뮤직 플레이어 */
 .music-player {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
-    padding: 15px 20px;
+    padding: 16px 20px;
     margin-bottom: 35px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .player-title {
-    font-size: 0.9rem;
-    color: #cbd5e1;
+    font-size: 0.85rem;
+    color: #94a3b8;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -89,7 +90,7 @@ body {
 }
 
 #play-btn {
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
     border: none;
     color: white;
     width: 36px;
@@ -104,89 +105,120 @@ body {
 
 #play-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(37, 117, 252, 0.5);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
 }
 
 #progress-bar {
     flex-grow: 1;
-    accent-color: #2575fc;
+    accent-color: #3b82f6;
+    height: 4px;
     cursor: pointer;
 }
 
 #time-display {
     font-size: 0.8rem;
-    color: #94a3b8;
-    min-width: 80px;
-    text-align: right;
+    color: #64748b;
 }
 
-/* 프로필 헤더 */
+/* 프로필 원형 이미지 배치 교정 */
 .profile-header {
     text-align: center;
     margin-bottom: 35px;
 }
 
-.avatar-placeholder {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, #1e1b4b 0%, #311068 100%);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+.avatar-area {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 18px auto;
     border-radius: 50%;
-    display: inline-flex;
+    padding: 3px;
+    background: linear-gradient(135deg, #4f46e5, #3b82f6);
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.35);
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
-    box-shadow: 0 0 25px rgba(106, 17, 203, 0.4);
-    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #0d0d1e;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
 }
 
 .profile-name {
     font-family: 'Orbit', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.oshimark {
+    font-size: 1.25rem;
+    vertical-align: middle;
 }
 
 .profile-sub {
-    font-size: 0.95rem;
-    color: #94a3b8;
+    font-size: 0.9rem;
+    color: #64748b;
 }
 
-/* 프로필 상세 정보 */
+/* 가독성 붕괴 방지용 격자 정보 레이아웃 교정 */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 24px;
+    border-radius: 18px;
     margin-bottom: 25px;
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 14px 24px;
 }
 
-@media (max-width: 600px) {
-    .info-grid { grid-template-columns: 1fr; }
+@media (max-width: 560px) {
+    .info-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 
 .info-item {
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 8px;
-    font-size: 0.95rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 6px;
+    font-size: 0.9rem;
 }
 
+/* 라벨 좌측 배치폭을 고정 제어하여 텍스트 분산 찢어짐 최소화 */
 .info-item strong {
-    color: #6366f1;
+    width: 130px;
+    color: #818cf8;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.info-item span {
+    color: #e2e8f0;
 }
 
 .color-tag {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .color-tag .dot {
@@ -194,25 +226,26 @@ body {
     height: 10px;
     background-color: #f1f1f1;
     border-radius: 50%;
-    box-shadow: 0 0 8px #2575fc;
+    box-shadow: 0 0 8px #3b82f6;
 }
 
 .tags {
-    margin-top: 15px;
+    margin-top: 18px;
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .tag {
-    font-size: 0.85rem;
-    background: rgba(99, 102, 241, 0.15);
+    font-size: 0.8rem;
+    background: rgba(99, 102, 241, 0.12);
     padding: 4px 12px;
-    border-radius: 20px;
-    color: #a5b4fc;
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 30px;
+    color: #93c5fd;
+    border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
-/* 한마디 코멘트 */
+/* 다국어 메시지 박스 */
 .comments-section {
     display: flex;
     flex-direction: column;
@@ -221,26 +254,26 @@ body {
 }
 
 .comment-box {
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 3px solid #6a11cb;
+    background: rgba(255, 255, 255, 0.01);
+    border-left: 3px solid #4f46e5;
     padding: 12px 18px;
     border-radius: 0 12px 12px 0;
 }
 
 .lang-tag {
-    font-size: 0.75rem;
-    color: #6366f1;
-    font-weight: bold;
+    font-size: 0.7rem;
+    color: #818cf8;
+    font-weight: 700;
     margin-bottom: 4px;
 }
 
 .comment-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-style: italic;
-    color: #e2e8f0;
+    color: #cbd5e1;
 }
 
-/* 신규 추가: 사이트 소개 카드 스타일 */
+/* 우리의 기록장 연동 블록 디자인 균형 교정 */
 .project-section {
     margin-bottom: 35px;
 }
@@ -249,95 +282,91 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
     padding: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, border-color 0.3s;
 }
 
 .project-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(106, 17, 203, 0.2);
-    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .project-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    border-radius: 14px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f0f23 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.6rem;
-    color: white;
     flex-shrink: 0;
-    box-shadow: 0 0 15px rgba(37, 117, 252, 0.3);
+    overflow: hidden;
 }
 
-/* 아이콘 이미지를 넣으실 경우를 대비한 스타일 */
 .project-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 14px;
+}
+
+.icon-fallback {
+    color: #a5b4fc;
+    font-size: 1.3rem;
 }
 
 .project-details h3 {
-    font-family: 'Orbit', sans-serif;
-    font-size: 1.15rem;
-    margin-bottom: 5px;
-    color: #fff;
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 4px;
 }
 
 .project-desc {
-    font-size: 0.9rem;
-    color: #cbd5e1;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 8px;
 }
 
 .project-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: #818cf8;
+    gap: 5px;
+    color: #93c5fd;
     text-decoration: none;
     font-size: 0.85rem;
-    font-weight: 500;
     transition: color 0.2s;
 }
 
 .project-link:hover {
-    color: #a5b4fc;
+    color: #bfdbfe;
 }
 
-@media (max-width: 600px) {
-    .project-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
+@media (max-width: 500px) {
+    .project-card { flex-direction: column; text-align: center; }
 }
 
-/* 링크 소셜 섹션 */
+/* 하단 링크 버튼 모듈화 정렬 */
 .section-title {
     font-family: 'Orbit', sans-serif;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     text-align: center;
     margin-bottom: 18px;
-    color: #cbd5e1;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
 }
 
 .links-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 12px;
     margin-bottom: 35px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .links-grid { grid-template-columns: 1fr; }
 }
 
@@ -345,20 +374,19 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    color: white;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    color: #e2e8f0;
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .link-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(106, 17, 203, 0.2);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
 }
 
 .link-card.discord:hover { border-color: #5865F2; color: #5865F2; }
@@ -366,19 +394,18 @@ body {
 .link-card.instagram:hover { border-color: #e1306c; color: #e1306c; }
 .link-card.email:hover { border-color: #10b981; color: #10b981; }
 
-/* 푸터 */
+/* 하단 푸터 영역 */
 .profile-footer {
     text-align: center;
-    font-size: 0.85rem;
-    color: #64748b;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 20px;
+    font-size: 0.8rem;
+    color: #475569;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: 25px;
 }
 
 .custom-greeting {
-    margin-bottom: 10px;
-    color: #cbd5e1;
-    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: #94a3b8;
 }
 
 .copyright {
