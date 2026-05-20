@@ -15,7 +15,6 @@
 }
 
 html, body {
-    /* ✨ 모바일 브라우저가 글자 크기를 마음대로 키우는 현상(Font Boosting) 원천 차단 */
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -36,7 +35,7 @@ body {
 }
 
 /* ==========================================================================
-   로딩 화면 (글자 크기 고정 버전)
+   로딩 화면
    ========================================================================== */
 #loading-screen {
     position: fixed;
@@ -141,7 +140,7 @@ body {
 }
 
 /* ==========================================================================
-   오디오 플레이어 영역
+   오디오 플레이어 영역 (위치 및 크기 흔들림 절대 고정 버전)
    ========================================================================== */
 .music-player {
     background: rgba(255, 255, 255, 0.03);
@@ -161,12 +160,23 @@ body {
     align-items: center;
     gap: 8px;
     line-height: 1;
+    width: 100%;
+    overflow: hidden; /* 영역 밖으로 나가는 것 방지 */
 }
 
 .player-title i {
     font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
+}
+
+/* 💡 제목이 길어져도 줄바꿈이 일어나지 않고 '...' 처리되도록 고정 */
+#track-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
 }
 
 .player-controls {
@@ -213,14 +223,17 @@ body {
     vertical-align: middle;
 }
 
+/* 💡 시간 측정 시 글자 너비 변화로 바(Bar)가 흔들리는 것을 막기 위해 가로폭 완전 고정 */
 #time-display {
     font-size: 0.8rem;
     color: #64748b;
     display: inline-flex;
     align-items: center;
+    justify-content: flex-end;
     line-height: 1;
+    min-width: 95px; /* 너비 고정 */
     flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums; /* 가변 숫자 폰트 고정 크기 처리 */
 }
 
 /* ==========================================================================
@@ -282,7 +295,7 @@ body {
 }
 
 /* ==========================================================================
-   상세 정보 그리드 판넬 (중앙 대칭 보정)
+   상세 정보 그리드 판넬 (중앙 대칭 및 균형 보정)
    ========================================================================== */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
