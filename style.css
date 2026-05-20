@@ -1,24 +1,26 @@
 /* ==========================================================================
-   기본 초기화 및 글자 크기 고정 (Font Size Lock)
+   기본 초기화 및 글자 크기/레이아웃 완전 고정 (Layout Shift Protection)
    ========================================================================== */
+html {
+    /* ✨ 최신 브라우저 필수 속성: 스크롤바 생성 여부와 관계없이 화면 중앙 가로 축을 고정하여 튕김 방지 */
+    scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
-    /* 드래그 및 텍스트 선택 방지 */
+    /* 보안: 드래그 및 텍스트 선택 방지 */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     -webkit-user-drag: none;
-}
-
-html, body {
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
 }
 
 body {
@@ -35,7 +37,7 @@ body {
 }
 
 /* ==========================================================================
-   로딩 화면
+   로딩 화면 (크기 및 위치 고정)
    ========================================================================== */
 #loading-screen {
     position: fixed;
@@ -81,7 +83,7 @@ body {
 
 @keyframes spinGalaxy {
     0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1.05); }
     100% { transform: rotate(360deg) scale(1); }
 }
 
@@ -91,7 +93,7 @@ body {
 }
 
 /* ==========================================================================
-   몽환적인 우주 배경 효과
+   몽환적인 우주 배경 효과 (콘텐츠에 영향을 주지 않는 독립 레이어)
    ========================================================================== */
 .nebula-1 {
     position: fixed;
@@ -99,7 +101,7 @@ body {
     left: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(106, 17, 203, 0.18) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(106, 17, 203, 0.15) 0%, rgba(0,0,0,0) 70%);
     filter: blur(80px);
     z-index: -1;
     animation: floatNebula 22s infinite alternate ease-in-out;
@@ -111,26 +113,26 @@ body {
     right: -10%;
     width: 650px;
     height: 650px;
-    background: radial-gradient(circle, rgba(37, 117, 252, 0.13) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(37, 117, 252, 0.12) 0%, rgba(0,0,0,0) 70%);
     filter: blur(90px);
     z-index: -1;
     animation: floatNebula 28s infinite alternate-reverse ease-in-out;
 }
 
 @keyframes floatNebula {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(40px, 30px) scale(1.12); }
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 20px); }
 }
 
 /* ==========================================================================
-   메인 컨테이너 레이아웃
+   메인 컨테이너 레이아웃 (가로폭 절대 고정)
    ========================================================================== */
 .container {
     width: 100%;
-    max-width: 650px;
+    max-width: 620px; /* 대칭 균형을 위해 본체 슬림화 */
     margin: 0 20px;
     padding: 40px;
-    background: rgba(11, 11, 24, 0.7);
+    background: rgba(11, 11, 24, 0.72);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -140,7 +142,7 @@ body {
 }
 
 /* ==========================================================================
-   오디오 플레이어 영역 (위치 및 크기 흔들림 절대 고정 버전)
+   오디오 플레이어 영역 (텍스트 변화로 인한 뒤틀림 완전 방지)
    ========================================================================== */
 .music-player {
     background: rgba(255, 255, 255, 0.03);
@@ -161,7 +163,7 @@ body {
     gap: 8px;
     line-height: 1;
     width: 100%;
-    overflow: hidden; /* 영역 밖으로 나가는 것 방지 */
+    overflow: hidden;
 }
 
 .player-title i {
@@ -171,7 +173,6 @@ body {
     flex-shrink: 0;
 }
 
-/* 💡 제목이 길어져도 줄바꿈이 일어나지 않고 '...' 처리되도록 고정 */
 #track-name {
     white-space: nowrap;
     overflow: hidden;
@@ -198,12 +199,11 @@ body {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s;
 }
 
 #play-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+    transform: scale(1.08);
 }
 
 #play-btn i {
@@ -223,7 +223,7 @@ body {
     vertical-align: middle;
 }
 
-/* 💡 시간 측정 시 글자 너비 변화로 바(Bar)가 흔들리는 것을 막기 위해 가로폭 완전 고정 */
+/* 💡 타이머 글자 너비 공간을 고정(100px)하여 재생 바가 가로로 찌그러지거나 흔들리는 버그 수정 */
 #time-display {
     font-size: 0.8rem;
     color: #64748b;
@@ -231,9 +231,10 @@ body {
     align-items: center;
     justify-content: flex-end;
     line-height: 1;
-    min-width: 95px; /* 너비 고정 */
+    min-width: 100px; 
+    max-width: 100px;
     flex-shrink: 0;
-    font-variant-numeric: tabular-nums; /* 가변 숫자 폰트 고정 크기 처리 */
+    font-variant-numeric: tabular-nums; 
 }
 
 /* ==========================================================================
@@ -295,7 +296,7 @@ body {
 }
 
 /* ==========================================================================
-   상세 정보 그리드 판넬 (중앙 대칭 및 균형 보정)
+   상세 정보 그리드 판넬 (✨ 완벽한 가로/세로 중앙 고정 정렬 배치)
    ========================================================================== */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
@@ -308,34 +309,37 @@ body {
 .info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px 28px;
-    max-width: 550px;
+    gap: 16px 35px;
+    max-width: 500px; /* 격자판을 중앙으로 단단히 결속 */
     margin: 0 auto;
 }
 
 @media (max-width: 560px) {
-    .info-grid { grid-template-columns: 1fr; gap: 12px; }
+    .info-grid { grid-template-columns: 1fr; gap: 12px; max-width: 280px; }
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* 💡 좌우 찢어짐 방지: 무조건 왼쪽에서부터 나열 */
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     padding-bottom: 8px;
     font-size: 0.9rem;
 }
 
+/* 💡 타이틀 명칭 항목의 크기를 일정한 폭(115px)으로 고정하여 우측 내용물들의 정렬 선을 정중앙에 일치시킴 */
 .info-item strong {
+    width: 115px; 
     color: #818cf8;
     font-weight: 500;
     flex-shrink: 0;
-    padding-right: 10px;
+    text-align: left;
 }
 
 .info-item span {
     color: #e2e8f0;
-    text-align: right;
+    text-align: left;
+    white-space: nowrap;
 }
 
 .color-tag {
@@ -352,10 +356,11 @@ body {
     box-shadow: 0 0 8px #3b82f6;
 }
 
+/* 태그 정중앙 바인딩 */
 .tags {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -370,7 +375,7 @@ body {
 }
 
 /* ==========================================================================
-   코멘트 & 프로젝트 블록 영역
+   코멘트 & 프로젝트 블록 영역 (너비 꽉 참 버그 수정)
    ========================================================================== */
 .comment-section {
     margin-bottom: 35px;
@@ -382,7 +387,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 18px 20px;
     border-radius: 16px;
-    max-width: 550px;
+    max-width: 500px; /* 전체 요소 가로폭 통일 */
     margin: 0 auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
@@ -407,15 +412,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 20px;
-    max-width: 550px;
+    max-width: 500px; /* 전체 요소 가로폭 통일 */
     margin: 0 auto;
-    transition: transform 0.3s, border-color 0.3s;
-}
-
-.project-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(99, 102, 241, 0.3);
-    background: rgba(255, 255, 255, 0.04);
 }
 
 .project-icon {
@@ -444,6 +442,7 @@ body {
 
 .project-details {
     text-align: left;
+    overflow: hidden;
 }
 
 .project-details h3 {
@@ -465,20 +464,15 @@ body {
     color: #93c5fd;
     text-decoration: none;
     font-size: 0.85rem;
-    transition: color 0.2s;
-}
-
-.project-link:hover {
-    color: #bfdbfe;
 }
 
 @media (max-width: 500px) {
-    .project-card { flex-direction: column; text-align: center; }
+    .project-card { flex-direction: column; text-align: center; max-width: 280px; }
     .project-details { text-align: center; }
 }
 
 /* ==========================================================================
-   소셜 및 링크 섹션
+   소셜 및 링크 섹션 (Contact)
    ========================================================================== */
 .section-title {
     font-family: 'Orbit', sans-serif;
@@ -490,7 +484,7 @@ body {
 }
 
 .links-section {
-    max-width: 550px;
+    max-width: 500px; /* 가로폭 통일 */
     margin: 0 auto 35px auto;
 }
 
@@ -501,7 +495,7 @@ body {
 }
 
 @media (max-width: 500px) {
-    .links-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
 }
 
 .link-card {
@@ -515,12 +509,11 @@ body {
     color: #e2e8f0;
     text-decoration: none;
     font-size: 0.9rem;
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s;
 }
 
 .link-card:hover {
     background: rgba(255, 255, 255, 0.07);
-    transform: translateY(-2px);
 }
 
 .link-card.discord:hover { border-color: #5865F2; color: #5865F2; }
