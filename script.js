@@ -88,3 +88,18 @@ document.addEventListener('keydown', (e) => {
         timeDisplay.textContent = `${pad(currentMin)}:${pad(currentSec)} / ${isNaN(audio.duration) ? '00:00' : pad(durationMin)}:${pad(durationSec)}`;
     }
 });
+// ==========================================================================
+// 로딩 화면 제어 스크립트
+// ==========================================================================
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        // fade-out 클래스를 추가하여 부드럽게 투명해지도록 만듦
+        loadingScreen.classList.add('fade-out');
+        
+        // 애니메이션(0.6초)이 완전히 끝난 후 display를 none으로 변경하여 클릭 방해 안 받게 처리
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 600);
+    }
+});
