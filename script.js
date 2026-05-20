@@ -1,10 +1,9 @@
 // 음악 플레이어 기능 제어 구현
 document.addEventListener('DOMContentLoaded', () => {
     // 플레이어 기본 설정
-    // ※ 중요: 재생하고 싶은 음악 파일 경로를 아래 'track.mp3' 대신 넣어주세요.
-    // 같은 폴더에 음악 파일을 두고 이름만 맞춰주면 작동합니다. (예: 'my-bgm.mp3')
-    const AUDIO_SRC = 'track.mp3'; 
-    const TRACK_DISPLAY_NAME = '🌌 우주 속으로 흐르는 꿈의 선율 (BGM)';
+    // ※ 재생하고 싶은 음악 파일 경로를 아래 'track.mp3' 대신 넣어주세요.
+    const AUDIO_SRC = 'Night_Sky_City_2026_Plum.mp3'; 
+    const TRACK_DISPLAY_NAME = 'Night Sky City 2026 - Plum';
 
     const audio = new Audio(AUDIO_SRC);
     const playBtn = document.getElementById('play-btn');
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 재생/일시정지 버튼 토글
     playBtn.addEventListener('click', () => {
         if (!audio.src || audio.src.includes('undefined')) {
-            alert('재생할 음악 파일 주소가 올바르지 않습니다. script.js 코드를 확인해주세요.');
+            alert('재생할 음악 파일 주소가 올바르지 않습니다.');
             return;
         }
 
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 trackName.textContent = TRACK_DISPLAY_NAME;
             }).catch(error => {
                 console.error("재생 실패:", error);
-                alert("음악 파일(track.mp3)을 찾을 수 없거나 브라우저 권한 문제로 재생할 수 없습니다. 파일을 같은 폴더에 넣었는지 확인해주세요!");
+                alert("음악 파일(track.mp3)을 재생할 수 없습니다. 파일을 같은 폴더에 넣었는지 확인해주세요!");
             });
         }
         isPlaying = !isPlaying;
