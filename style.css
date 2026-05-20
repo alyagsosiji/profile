@@ -63,7 +63,9 @@ body {
                 0 0 40px rgba(99, 102, 241, 0.08);
 }
 
-/* 상단 오디오 플레이어 */
+/* ==========================================================================
+   음악 플레이어 스타일 (정렬 오류 완벽 수정 버전)
+   ========================================================================== */
 .music-player {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -72,21 +74,29 @@ body {
     margin-bottom: 35px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px; /* 상하 줄 간격 균형 조정 */
 }
 
 .player-title {
     font-size: 0.85rem;
     color: #94a3b8;
     display: flex;
-    align-items: center;
+    align-items: center; /* 아이콘과 텍스트 세로 중앙 정렬 */
     gap: 8px;
+    line-height: 1; /* 행간 불일치로 인한 어긋남 방지 */
+}
+
+.player-title i {
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
 }
 
 .player-controls {
     display: flex;
-    align-items: center;
+    align-items: center; /* 버튼, 재생 바, 텍스트를 칼같이 한 줄로 정렬 */
     gap: 15px;
+    width: 100%;
 }
 
 #play-btn {
@@ -97,9 +107,10 @@ body {
     height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -108,16 +119,32 @@ body {
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
 }
 
+#play-btn i {
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 브라우저 기본 마진을 지워 정렬을 똑바로 맞춤 */
 #progress-bar {
     flex-grow: 1;
     accent-color: #3b82f6;
     height: 4px;
     cursor: pointer;
+    margin: 0; /* ✨ 중요: 브라우저 기본 틀어짐 방지 */
+    padding: 0;
+    vertical-align: middle;
 }
 
 #time-display {
     font-size: 0.8rem;
     color: #64748b;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1; /* ✨ 중요: 글자 높낮이 기준선 통일 */
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums; /* 숫자 변할 때 들썩임 방지 */
 }
 
 /* 프로필 헤더 및 이미지 서클 */
