@@ -1,11 +1,11 @@
-// 음악 플레이어 기능 제어 구현
 document.addEventListener('DOMContentLoaded', () => {
-    // 플레이어 기본 설정
-    // ※ 재생하고 싶은 음악 파일 경로를 아래 'track.mp3' 대신 넣어주세요.
+    // 💡 연결하려는 로컬 mp3 음원 파일명을 매칭하세요.
     const AUDIO_SRC = 'Night_Sky_City_2026_Plum.mp3'; 
     const TRACK_DISPLAY_NAME = 'Night Sky City 2026 - Plum';
 
     const audio = new Audio(AUDIO_SRC);
+    audio.loop = true;
+    
     const playBtn = document.getElementById('play-btn');
     const progressBar = document.getElementById('progress-bar');
     const timeDisplay = document.getElementById('time-display');
@@ -13,33 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isPlaying = false;
 
-    // 초기 오디오 세팅 및 이벤트 핸들러
-    audio.addEventListener('loadedmetadata', () => {
-        updateTimeDisplay();
-    });
-
     audio.addEventListener('timeupdate', () => {
         if (audio.duration) {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.value = progress;
+            progressBar.value = (audio.currentTime / audio.duration) * 100;
         }
         updateTimeDisplay();
     });
 
-    audio.addEventListener('ended', () => {
-        isPlaying = false;
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        progressBar.value = 0;
-        updateTimeDisplay();
-    });
+    audio.addEventListener('loadedmetadata', updateTimeDisplay);
 
-    // 재생/일시정지 버튼 토글
     playBtn.addEventListener('click', () => {
-        if (!audio.src || audio.src.includes('undefined')) {
-            alert('재생할 음악 파일 주소가 올바르지 않습니다.');
-            return;
-        }
-
         if (isPlaying) {
             audio.pause();
             playBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -48,32 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
             audio.play().then(() => {
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 trackName.textContent = TRACK_DISPLAY_NAME;
-            }).catch(error => {
-                console.error("재생 실패:", error);
-                alert("음악 파일(track.mp3)을 재생할 수 없습니다. 파일을 같은 폴더에 넣었는지 확인해주세요!");
+            }).catch(() => {
+                console.log("Audio play blocked or file not found.");
             });
         }
         isPlaying = !isPlaying;
     });
 
-    // 프로그레스 바 조절 시 이동
     progressBar.addEventListener('input', () => {
         if (audio.duration) {
-            const seekTime = (progressBar.value / 100) * audio.duration;
-            audio.currentTime = seekTime;
+            audio.currentTime = (progressBar.value / 100) * audio.duration;
         }
     });
 
-    // 시간 표시 업데이트 유틸리티
     function updateTimeDisplay() {
         const currentMin = Math.floor(audio.currentTime / 60) || 0;
         const currentSec = Math.floor(audio.currentTime % 60) || 0;
         const durationMin = Math.floor(audio.duration / 60) || 0;
         const durationSec = Math.floor(audio.duration % 60) || 0;
 
-        const formattedCurrent = `${String(currentMin).padStart(2, '0')}:${String(currentSec).padStart(2, '0')}`;
-        const formattedDuration = isNaN(audio.duration) ? '00:00' : `${String(durationMin).padStart(2, '0')}:${String(durationSec).padStart(2, '0')}`;
-
-        timeDisplay.textContent = `${formattedCurrent} / ${formattedDuration}`;
+        const pad = (num) => String(num).padStart(2, '0');
+        timeDisplay.textContent = `${pad(currentMin)}:${pad(currentSec)} / ${isNaN(audio.duration) ? '00:00' : pad(durationMin)}:${pad(durationSec)}`;
     }
 });
