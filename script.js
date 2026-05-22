@@ -1,24 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 💡 연결하려는 로컬 mp3 음원 파일명을 매칭하세요.
-    const AUDIO_SRC = 'Night_Sky_City_2026_Plum.mp3'; 
-    const TRACK_DISPLAY_NAME = 'Night Sky City 2026 - Plum';
 
-    const audio = new Audio(AUDIO_SRC);
-    audio.loop = true;
-    
-    const playBtn = document.getElementById('play-btn');
-    const progressBar = document.getElementById('progress-bar');
-    const timeDisplay = document.getElementById('time-display');
-    const trackName = document.getElementById('track-name');
-
-    let isPlaying = false;
-
-    audio.addEventListener('timeupdate', () => {
-        if (audio.duration) {
-            progressBar.value = (audio.currentTime / audio.duration) * 100;
-        }
-        updateTimeDisplay();
-    });
 // ==========================================================================
 // 웹사이트 보안 스크립트 (우클릭, 드래그, F12 차단)
 // ==========================================================================
