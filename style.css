@@ -2,7 +2,6 @@
    기본 초기화 및 글자 크기/레이아웃 완전 고정 (Layout Shift Protection)
    ========================================================================== */
 html {
-    /* ✨ 최신 브라우저 필수 속성: 스크롤바 생성 여부와 관계없이 화면 중앙 가로 축을 고정하여 튕김 방지 */
     scrollbar-gutter: stable;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -37,7 +36,7 @@ body {
 }
 
 /* ==========================================================================
-   로딩 화면 (크기 및 위치 고정)
+   로딩 화면
    ========================================================================== */
 #loading-screen {
     position: fixed;
@@ -93,7 +92,7 @@ body {
 }
 
 /* ==========================================================================
-   몽환적인 우주 배경 효과 (콘텐츠에 영향을 주지 않는 독립 레이어)
+   몽환적인 우주 배경 효과
    ========================================================================== */
 .nebula-1 {
     position: fixed;
@@ -125,11 +124,11 @@ body {
 }
 
 /* ==========================================================================
-   메인 컨테이너 레이아웃 (가로폭 절대 고정)
+   메인 컨테이너 레이아웃
    ========================================================================== */
 .container {
     width: 100%;
-    max-width: 620px; /* 대칭 균형을 위해 본체 슬림화 */
+    max-width: 620px;
     margin: 0 20px;
     padding: 40px;
     background: rgba(11, 11, 24, 0.72);
@@ -139,102 +138,6 @@ body {
     border-radius: 24px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
                 0 0 40px rgba(99, 102, 241, 0.08);
-}
-
-/* ==========================================================================
-   오디오 플레이어 영역 (텍스트 변화로 인한 뒤틀림 완전 방지)
-   ========================================================================== */
-.music-player {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 16px;
-    padding: 16px 20px;
-    margin-bottom: 35px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.player-title {
-    font-size: 0.85rem;
-    color: #94a3b8;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    line-height: 1;
-    width: 100%;
-    overflow: hidden;
-}
-
-.player-title i {
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-#track-name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-}
-
-.player-controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-}
-
-#play-btn {
-    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
-    border: none;
-    color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-}
-
-#play-btn:hover {
-    transform: scale(1.08);
-}
-
-#play-btn i {
-    font-size: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#progress-bar {
-    flex-grow: 1;
-    accent-color: #3b82f6;
-    height: 4px;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    vertical-align: middle;
-}
-
-/* 💡 타이머 글자 너비 공간을 고정(100px)하여 재생 바가 가로로 찌그러지거나 흔들리는 버그 수정 */
-#time-display {
-    font-size: 0.8rem;
-    color: #64748b;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    line-height: 1;
-    min-width: 100px; 
-    max-width: 100px;
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums; 
 }
 
 /* ==========================================================================
@@ -283,20 +186,24 @@ body {
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 6px;
+    display: inline-block;
 }
 
 .oshimark {
     font-size: 1.25rem;
     vertical-align: middle;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 .profile-sub {
     font-size: 0.9rem;
     color: #64748b;
+    line-height: 1.4;
 }
 
 /* ==========================================================================
-   상세 정보 그리드 판넬 (✨ 완벽한 가로/세로 중앙 고정 정렬 배치)
+   상세 정보 그리드 판넬 (정밀 가로정렬 유지형)
    ========================================================================== */
 .profile-info {
     background: rgba(0, 0, 0, 0.2);
@@ -310,7 +217,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px 35px;
-    max-width: 500px; /* 격자판을 중앙으로 단단히 결속 */
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -321,13 +228,12 @@ body {
 .info-item {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* 💡 좌우 찢어짐 방지: 무조건 왼쪽에서부터 나열 */
+    justify-content: flex-start;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     padding-bottom: 8px;
     font-size: 0.9rem;
 }
 
-/* 💡 타이틀 명칭 항목의 크기를 일정한 폭(115px)으로 고정하여 우측 내용물들의 정렬 선을 정중앙에 일치시킴 */
 .info-item strong {
     width: 115px; 
     color: #818cf8;
@@ -356,7 +262,6 @@ body {
     box-shadow: 0 0 8px #3b82f6;
 }
 
-/* 태그 정중앙 바인딩 */
 .tags {
     margin-top: 20px;
     display: flex;
@@ -375,7 +280,7 @@ body {
 }
 
 /* ==========================================================================
-   코멘트 & 프로젝트 블록 영역 (너비 꽉 참 버그 수정)
+   코멘트 & 프로젝트 블록 영역
    ========================================================================== */
 .comment-section {
     margin-bottom: 35px;
@@ -387,7 +292,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 18px 20px;
     border-radius: 16px;
-    max-width: 500px; /* 전체 요소 가로폭 통일 */
+    max-width: 500px;
     margin: 0 auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
@@ -412,7 +317,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 20px;
-    max-width: 500px; /* 전체 요소 가로폭 통일 */
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -467,12 +372,12 @@ body {
 }
 
 @media (max-width: 500px) {
-    .project-card { flex-direction: column; text-align: center; max-width: 280px; }
+    .project-card { flex-direction: column; text-align: center; max-width: 280px; margin: 0 auto; }
     .project-details { text-align: center; }
 }
 
 /* ==========================================================================
-   소셜 및 링크 섹션 (Contact)
+   소셜 및 링크 섹션
    ========================================================================== */
 .section-title {
     font-family: 'Orbit', sans-serif;
@@ -484,7 +389,7 @@ body {
 }
 
 .links-section {
-    max-width: 500px; /* 가로폭 통일 */
+    max-width: 500px;
     margin: 0 auto 35px auto;
 }
 
